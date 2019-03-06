@@ -9,6 +9,7 @@ package duppont;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -54,9 +55,12 @@ public class Tablero extends JFrame implements Atributos, MouseMotionListener {
     @Override
     public void paint(Graphics g) {
         //Fondo
-        g.setColor(Color.decode("#3b5998"));
+        g.setColor(Color.decode("#333399"));
         g.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-        g.setColor(Color.yellow);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Impact", Font.PLAIN, 30));
+        g.drawString("Duppont", 350, 80);
+        g.setColor(Color.decode("#ff6600"));
         g.fillRect(WINDOW_WIDTH + x, WINDOW_HEIGHT - 40, BARRA_WIDTH, BARRA_HEIGHT);
     }
 
