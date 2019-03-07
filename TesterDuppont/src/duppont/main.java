@@ -16,10 +16,14 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Tablero Ventana = new Tablero();
+        //Tablero Ventana = new Tablero();
+        //Ventana.titleBug();
         //Barra barra = new Barra();
         //Ventana.posicion();
-        
+        Ventana ventana = new Ventana();
+        ventana.setResizable(false);
+        ventana.setVisible(true);
+        ventana.setLocation(300, 200);
         
         
     }
