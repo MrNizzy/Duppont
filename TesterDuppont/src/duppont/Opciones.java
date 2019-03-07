@@ -36,6 +36,7 @@ public class Opciones extends javax.swing.JPanel implements Atributos {
 
         g.setFont(new Font("Impact", Font.PLAIN, 30));
         g.drawString("Duppont", 15, 40);
+        g.drawString("v1.1.5", 30, 140);
     }
 
 }
