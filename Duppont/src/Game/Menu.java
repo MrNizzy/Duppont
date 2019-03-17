@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -18,12 +19,16 @@ import javax.swing.JPanel;
  */
 public class Menu extends JPanel {
     private Image title;
+    JLabel Scores;
     String Titulo="Duppont",Score="Score:",Vidas="Vidas:";
     public Menu() {
         this.setSize(210, 460);
         this.setLocation(800, 7);
         this.setBackground(Color.decode("#e1d1f2"));
-        title = new ImageIcon(getClass().getResource("Title.png")).getImage();
+        title = new ImageIcon(getClass().getResource("Title.gif")).getImage();
+        Scores=new JLabel("Score");
+        Scores.setLocation(820,135);
+        add(Scores);
         //this.setBounds(0, 0, WIDTH, HEIGHT);
         //this.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         

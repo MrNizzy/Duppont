@@ -26,6 +26,7 @@ public class Pelota {
     private int limite_inferior;
     
     private int tamanio;
+    private Image fondo;
 
      public Pelota(int x, int y, int tamanio) {
         //coordenadas iniciales
@@ -33,6 +34,7 @@ public class Pelota {
         //imagen de Balon
         if (tamanio == 0) {
             balon = new ImageIcon(getClass().getResource("Bola.png")).getImage();
+            fondo = new ImageIcon(getClass().getResource("background.png")).getImage();
         }
         if (tamanio == 1) {
             balon = new ImageIcon(getClass().getResource("pelota48.png")).getImage();
@@ -86,7 +88,9 @@ public class Pelota {
     }
     
     public void dibujar(Graphics g) {
+        Graphics2D background=(Graphics2D)g;
         Graphics2D g2 = (Graphics2D)g;
+        background.drawImage(fondo, 0,0,5000,5000, null);
         g2.drawImage(balon, X, Y, null);
         //g.fillOval(X, Y, 15, 15);
     }

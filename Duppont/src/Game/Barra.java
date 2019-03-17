@@ -3,11 +3,14 @@ package Game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -21,6 +24,8 @@ public class Barra extends JPanel implements MouseMotionListener {
     private int Score;
     private Timer timer;
     private Pelota mipelota;
+    private Image barra;
+    private Image fondo;
 
     public Barra(Dimension d, int tamanio) {
         //Propiedades de la ventana
@@ -31,6 +36,9 @@ public class Barra extends JPanel implements MouseMotionListener {
         this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         this.setBackground(new Color(225, 209, 242));
         addMouseMotionListener(this);
+        
+        barra=new ImageIcon(getClass().getResource("barra.gif")).getImage();
+        fondo=new ImageIcon(getClass().getResource("background.png")).getImage();
 
         //dimension de la ventana entre 2
         x = d.width / 2;
@@ -56,16 +64,22 @@ public class Barra extends JPanel implements MouseMotionListener {
         super.paint(g);
         
         g.setColor(Color.decode("#ff6600"));
+        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g3 = (Graphics2D)g;
         
+        //g3.drawImage(fondo, 0,0,getWidth(),getHeight(), null);
         //Dibujo de la barra ejecutada al mover el mouse
-        if (limite > -780 && limite < -70) {
-            g.fillRect(WINDOW_WIDTH + x, WINDOW_HEIGHT - 25, 70, 15);
+        if (limite > -780 && limite < -125) {
+            //g.fillRect(WINDOW_WIDTH + x, WINDOW_HEIGHT - 25, 70, 15);
+            g2.drawImage(barra, WINDOW_WIDTH + x, WINDOW_HEIGHT - 25, null);
         }
         if (limite < -780) {
-            g.fillRect(WINDOW_WIDTH + -780, WINDOW_HEIGHT - 25, 70, 15);
+            g2.drawImage(barra, WINDOW_WIDTH + -780, WINDOW_HEIGHT - 25, null);
+            //g.fillRect(WINDOW_WIDTH + -780, WINDOW_HEIGHT - 25, 70, 15);
         }
-        if (limite > -70) {
-            g.fillRect(WINDOW_WIDTH + -70, WINDOW_HEIGHT - 25, 70, 15);
+        if (limite > -125) {
+            g2.drawImage(barra, WINDOW_WIDTH + -125, WINDOW_HEIGHT - 25, null);
+            //g.fillRect(WINDOW_WIDTH + -70, WINDOW_HEIGHT - 25, 70, 15);
         }
     }
 
