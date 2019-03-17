@@ -26,6 +26,7 @@ public class Barra extends JPanel implements MouseMotionListener {
     private Pelota mipelota;
     private Image barra;
     private Image fondo;
+    private lv1 nivel1;
 
     public Barra(Dimension d, int tamanio) {
         //Propiedades de la ventana
@@ -38,12 +39,13 @@ public class Barra extends JPanel implements MouseMotionListener {
         addMouseMotionListener(this);
         
         barra=new ImageIcon(getClass().getResource("barra.gif")).getImage();
-        fondo=new ImageIcon(getClass().getResource("background.png")).getImage();
+        fondo=new ImageIcon(getClass().getResource("background.gif")).getImage();
 
         //dimension de la ventana entre 2
         x = d.width / 2;
 
         //Objeto Pelota
+        nivel1=new lv1();
         mipelota = new Pelota(390, 450, tamanio);
         mipelota.LimitesXY(getWidth(), getHeight());
 
@@ -106,6 +108,7 @@ public class Barra extends JPanel implements MouseMotionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         mipelota.dibujar(g);
+        nivel1.dibujar(g);
     }
 
     //Controla el inicio y fin de la animación

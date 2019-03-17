@@ -34,7 +34,7 @@ public class Pelota {
         //imagen de Balon
         if (tamanio == 0) {
             balon = new ImageIcon(getClass().getResource("Bola.png")).getImage();
-            fondo = new ImageIcon(getClass().getResource("background.png")).getImage();
+            fondo = new ImageIcon(getClass().getResource("background.gif")).getImage();
         }
         if (tamanio == 1) {
             balon = new ImageIcon(getClass().getResource("pelota48.png")).getImage();
@@ -83,8 +83,8 @@ public class Pelota {
     }
 
     public void velocidadXY(){
-        velocidad_X = 4;
-        velocidad_Y = 4;
+        velocidad_X = 6;
+        velocidad_Y = 6;
     }
     
     public void dibujar(Graphics g) {

@@ -64,7 +64,7 @@ public class Ventana extends javax.swing.JFrame {
         );
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("¡Bienvenido! >:3");
+        jLabel1.setText("v1.5.1.1 released");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

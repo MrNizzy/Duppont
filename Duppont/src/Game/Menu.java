@@ -28,7 +28,7 @@ public class Menu extends JPanel {
         title = new ImageIcon(getClass().getResource("Title.gif")).getImage();
         Scores=new JLabel("Score");
         Scores.setLocation(820,135);
-        add(Scores);
+        //add(Scores);
         //this.setBounds(0, 0, WIDTH, HEIGHT);
         //this.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         
