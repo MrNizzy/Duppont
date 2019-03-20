@@ -1,126 +1,71 @@
 package Game;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.JButton;
 
-/**
- *
- * @author Nizzy
- */
-public class Barra extends JPanel implements MouseMotionListener {
+public class Barra extends JButton implements KeyListener,MouseMotionListener {
 
-    private int x, y, WINDOW_HEIGHT, WINDOW_WIDTH, limite;
-    private int Score;
-    private Timer timer;
-    private Pelota mipelota;
-    private Image barra;
-    private Image fondo;
-    private lv1 nivel1;
+    protected int x; //atributo posicion inicial de la paleta en el eje x
+    protected int y;  //atributo posicion inicial de la paleta en el eje y
+    int ancho = 100;
+    int alto = 20;
 
-    public Barra(Dimension d, int tamanio) {
-        //Propiedades de la ventana
-        this.setSize(d);
-        this.setPreferredSize(d);
-        WINDOW_HEIGHT = d.height;
-        WINDOW_WIDTH = d.width;
-        this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-        this.setBackground(new Color(225, 209, 242));
-        addMouseMotionListener(this);
+    public Barra(int x, int y) {
         
-        barra=new ImageIcon(getClass().getResource("barra.gif")).getImage();
-        fondo=new ImageIcon(getClass().getResource("background.gif")).getImage();
-
-        //dimension de la ventana entre 2
-        x = d.width / 2;
-
-        //Objeto Pelota
-        nivel1=new lv1();
-        mipelota = new Pelota(390, 450, tamanio);
-        mipelota.LimitesXY(getWidth(), getHeight());
-
-        // Para la animación de la pelota
-        timer = new Timer(16, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mipelota.traslacion(WINDOW_WIDTH+x,WINDOW_HEIGHT-25,70);
-
-                repaint();
-            }
-        });
+        
+        //el constructor recibe por parametro la posicion inicial de la paleta
+        this.x = x;
+        this.y = y;
+        this.setBounds(x, y, this.ancho, this.alto); //cordenadas de la paleta y tamaño
+        this.addKeyListener(this); //añadir al constructor la escucha del teclado
     }
 
     @Override
-    public void paint(Graphics g) {
-        //Fondo
-        super.paint(g);
-        
-        g.setColor(Color.decode("#ff6600"));
-        Graphics2D g2 = (Graphics2D)g;
-        Graphics2D g3 = (Graphics2D)g;
-        
-        //g3.drawImage(fondo, 0,0,getWidth(),getHeight(), null);
-        //Dibujo de la barra ejecutada al mover el mouse
-        if (limite > -780 && limite < -125) {
-            //g.fillRect(WINDOW_WIDTH + x, WINDOW_HEIGHT - 25, 70, 15);
-            g2.drawImage(barra, WINDOW_WIDTH + x, WINDOW_HEIGHT - 25, null);
+    public void keyTyped(KeyEvent ke) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent evento) { //evento de la tecla cuando es presionada
+        if (evento.getExtendedKeyCode() == KeyEvent.VK_LEFT) {//captura la tecla y pregunta si fue la tecla izquierda
+            this.setLocation(this.getX() - 20, this.getY());//si la tecla fue izquierda la posicion en x se deplazara 5 
+            //pixeles a la izquierda = -5
         }
-        if (limite < -780) {
-            g2.drawImage(barra, WINDOW_WIDTH + -780, WINDOW_HEIGHT - 25, null);
-            //g.fillRect(WINDOW_WIDTH + -780, WINDOW_HEIGHT - 25, 70, 15);
-        }
-        if (limite > -125) {
-            g2.drawImage(barra, WINDOW_WIDTH + -125, WINDOW_HEIGHT - 25, null);
-            //g.fillRect(WINDOW_WIDTH + -70, WINDOW_HEIGHT - 25, 70, 15);
+        if (evento.getExtendedKeyCode() == KeyEvent.VK_RIGHT) {//captura la tecla y pregunta si fue la tecla derecha
+            this.setLocation(this.getX() + 20, this.getY());//si la tecla fue izquierda la posicion en x se deplazara 5 
+            //pixeles a la derecha = 5                                            
         }
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
+    public void keyReleased(KeyEvent ke) {
+    }
 
+    public int getAncho() {
+        return this.ancho;
+    }
+
+    public int getAlto() {
+        return this.alto;
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseDragged(MouseEvent me) {
         
-        //Para que la barra quede centrada en el puntero del mouse
-        x = e.getX() - 835;
-        
-        //Para que no dibuje mas allá de sus limites
-        limite = x;
-        
-        //System.out.println(limite);
-        y = WINDOW_HEIGHT - 40;
-        repaint();
     }
 
     @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        mipelota.dibujar(g);
-        nivel1.dibujar(g);
-    }
-
-    //Controla el inicio y fin de la animación
-    public void animar(boolean turnOnOff) {
-        if (turnOnOff) {
-            mipelota.velocidadXY();
-            timer.start();
-        } else {
-            timer.stop();
-            this.removeAll();
-            this.repaint();
-        }
+    public void mouseMoved(MouseEvent me) {
+        
+            /*this.setLocation(this.getX() - 20, this.getY());//si la tecla fue izquierda la posicion en x se deplazara 5 
+            //pixeles a la izquierda = -5
+       
+        
+            this.setLocation(this.getX() + 20, this.getY());//si la tecla fue izquierda la posicion en x se deplazara 5 
+            //pixeles a la derecha = 5*/                                            
+        
     }
 
 }

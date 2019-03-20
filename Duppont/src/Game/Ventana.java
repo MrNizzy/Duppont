@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 
 public class Ventana extends javax.swing.JFrame {
 
-    Barra barra;
+    GamePanel Gamepanel;
     Animacion pelota;
     private int Score;
     Menu menu;
@@ -24,12 +24,12 @@ public class Ventana extends javax.swing.JFrame {
         
         this.add(menu);
         this.add(Fondo);
-        barra = new Barra(Game.getSize(), 0);
-        barra.animar(true);
+        Gamepanel = new GamePanel(Game.getSize(), 0);
+        Gamepanel.animar(true);
         //pelota = new Animacion(Game.getSize(), Score);
         //Game.add(pelota);
         //pelota.animar(true);
-        Game.add(barra);
+        Game.add(Gamepanel);
         
     }
 

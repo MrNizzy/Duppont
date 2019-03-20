@@ -39,18 +39,6 @@ public class Pelota {
         if (tamanio == 1) {
             balon = new ImageIcon(getClass().getResource("pelota48.png")).getImage();
         }
-        if (tamanio == 2) {
-            balon = new ImageIcon(getClass().getResource("pelota64.png")).getImage();
-        }
-        if (tamanio == 3) {
-            balon = new ImageIcon(getClass().getResource("pelota128.png")).getImage();
-        }
-        if (tamanio == 4) {
-            balon = new ImageIcon(getClass().getResource("pelota256.png")).getImage();
-        }
-        if (tamanio == 5) {
-            balon = new ImageIcon(getClass().getResource("pelota512.png")).getImage();
-        }
     }
 
     //dado las dimensiones del contendor JPanel
@@ -60,7 +48,7 @@ public class Pelota {
     }
 
    //recalcula variables para dar la sensacion de movimiento
-   public void traslacion(int x1,int x2,int y1) {
+   public void traslacion(int x,int y) {
         //nueva posicion
         X += velocidad_X;
         Y += velocidad_Y;
@@ -76,7 +64,7 @@ public class Pelota {
             Y = 0;
             velocidad_Y = -velocidad_Y;
 
-        } else if ((Y > limite_inferior)&&(x2!=X)) {
+        } else if ((Y > limite_inferior)) {
             Y =  limite_inferior;
             velocidad_Y = -velocidad_Y;
         }
@@ -99,4 +87,14 @@ public class Pelota {
     private int aleatorio(int Max){
         return (int) (Math.random()*Max+1);
     }
+
+    public int getX() {
+        return X;
+    }
+
+    public int getY() {
+        return Y;
+    }
+    
+    
 }
