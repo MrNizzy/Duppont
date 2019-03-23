@@ -1,7 +1,5 @@
 package Game;
 
-import java.awt.Color;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -9,7 +7,6 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 //import javax.swing.JButton;
-import javax.swing.JLabel;
 
 public class Barra extends JButton implements KeyListener, MouseMotionListener {
 
@@ -18,7 +15,7 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
     private int Xmoved;
     int ancho = 100;
     int alto = 20;
-    ImageIcon fondo = new ImageIcon(getClass().getResource("Barra.gif"));
+    ImageIcon fondo = new ImageIcon(getClass().getResource("/Images/Barra.gif"));
 
     public Barra(int x, int y) {
 
@@ -70,6 +67,7 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
 
     @Override
     public void keyReleased(KeyEvent ke) {
+        
     }
 
     public int getAncho() {

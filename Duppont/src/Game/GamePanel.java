@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -19,12 +17,13 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel{
 
     private int x, y;
-    private double Panel_Width,Panel_Height;
+    private final double Panel_Width;
+    private final double Panel_Height;
     private int Score;
     private final Timer timer;
     private Pelota mipelota;
     Barra barra;
-    private lv1 nivel1;
+    private final lv1 nivel1;
 
     public GamePanel(Dimension d, int tamanio) {
         //Propiedades de la ventana

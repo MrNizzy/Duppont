@@ -9,8 +9,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,25 +19,31 @@ import javax.swing.JPanel;
  */
 public class Menu extends JPanel {
 
-    private Image title;
+    private final Image title;
     JLabel Scores;
-    String Titulo = "Duppont", Score = "Score:", Vidas = "Vidas:",Time="Time: ";
+    String Titulo = "Duppont", Score = "Score:", Vidas = "Vidas:", Time = "Time: ";
     String SegundosSet = "0";
     int TimeOut = 850;
-    ImageIcon fondo = new ImageIcon(getClass().getResource("image.png"));
+    ImageIcon fondo;
+    //Recursos
+    private ResourcesBrick resources;
 
     public Menu() {
-        this.setSize(210, 460);
-        this.setLocation(800, 7);
-        this.setBackground(Color.LIGHT_GRAY);
-        title = new ImageIcon(getClass().getResource("Title.png")).getImage();
+        //Inicializacion
+        resources = new ResourcesBrick();
+        resources.setRuta("/Images/");
+        /**
+         * ************************************************************************************************
+         */
+        this.fondo = new ImageIcon(getClass().getResource(resources.getRuta() + "image.png"));//Fondo
+        this.setSize(210, 460);//Tamaño
+        this.setLocation(800, 7);//Localizacion
+        this.setBackground(Color.LIGHT_GRAY);//Fondo
+        title = new ImageIcon(getClass().getResource(resources.getRuta() + "Title.png")).getImage();//Titulo
         Scores = new JLabel("Score");
         Scores.setLocation(820, 135);
 
-        //cronometro();
-        //add(Scores);
-        //this.setBounds(0, 0, WIDTH, HEIGHT);
-        //this.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        
     }
 
     @Override

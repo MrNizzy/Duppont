@@ -10,13 +10,13 @@ public class Ventana extends javax.swing.JFrame {
     Animacion pelota;
     private int Score;
     Menu menu;
-    ImageIcon ImgFondo = new ImageIcon(getClass().getResource("BackgroundSolid.png"));
+    ImageIcon ImgFondo = new ImageIcon(getClass().getResource("/Images/BackgroundSolid.png"));
     JLabel Fondo;
     
     public Ventana() {
         initComponents();
-        setTitle("Game Brick Breaker");
-        this.setIconImage(new ImageIcon(getClass().getResource("/Game/favicon.png")).getImage());
+        setTitle("Game Brick Breaker - DUPPONT");
+        this.setIconImage(new ImageIcon(getClass().getResource("/Images/favicon.png")).getImage());
         setLocationRelativeTo(null); // Centrar ventana
         setResizable(false); // No maximizar ventana
         //se crea instancia a Animacion de animacion y se añade a la Principal
@@ -50,7 +50,6 @@ public class Ventana extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1021, 525));
 
         Game.setBackground(new java.awt.Color(225, 209, 242));
         Game.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -68,7 +67,7 @@ public class Ventana extends javax.swing.JFrame {
         );
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("v1.5.1.1 released");
+        jLabel1.setText("v1.5.5.8 released");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

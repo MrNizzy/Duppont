@@ -9,83 +9,100 @@ import javax.swing.ImageIcon;
  * @author Brallan Orlando Hernandez Pardo
  * @e-mail 3134183631y@gmail.com
  */
-
 public class Pelota {
-    
+
     private Image balon;
     //Coordenadas del Balon
-    private int X;       
+    private int X;
     private int Y;
-
+    //Velocidades
     private int velocidad_X;
     private int velocidad_Y;
-
-    private int limite_izquierda=0;
+    //Limites
+    private final int limite_izquierda = 0;
     private int limite_derecha;
-    private int limite_superior=0;
+    private final int limite_superior = 0;
     private int limite_inferior;
-    
+    //Tamaño y Fondo
     private int tamanio;
     private Image fondo;
+    //Audio e Imagenes
+    private final ResourcesBrick resources;
+    
 
-     public Pelota(int x, int y, int tamanio) {
+    public Pelota(int x, int y, int tamanio) {
         //coordenadas iniciales
-        this.X = x; this.Y = y;
+        this.X = x;
+        this.Y = y;
+
+        //Inicialización de los recursos
+        resources = new ResourcesBrick();
+        resources.setRuta("/Images/");
+
         //imagen de Balon
         if (tamanio == 0) {
-            balon = new ImageIcon(getClass().getResource("Bola.png")).getImage();
-            fondo = new ImageIcon(getClass().getResource("image.png")).getImage();
+            balon = new ImageIcon(getClass().getResource(resources.getRuta()+"Bola.png")).getImage();
+            fondo = new ImageIcon(getClass().getResource(resources.getRuta()+"image.png")).getImage();
         }
         if (tamanio == 1) {
-            balon = new ImageIcon(getClass().getResource("pelota48.png")).getImage();
+            balon = new ImageIcon(getClass().getResource(resources.getRuta()+"pelota48.png")).getImage();
         }
     }
 
     //dado las dimensiones del contendor JPanel
-   public void LimitesXY(int width, int height) {
-        limite_derecha  = width  - balon.getWidth(null);
+    public void LimitesXY(int width, int height) {
+        limite_derecha = width - balon.getWidth(null);
         limite_inferior = height - balon.getHeight(null);
     }
 
-   //recalcula variables para dar la sensacion de movimiento
-   public void traslacion(int x,int y) {
+    //recalcula variables para dar la sensacion de movimiento
+    public void traslacion(int x, int y) {
         //nueva posicion
         X += velocidad_X;
         Y += velocidad_Y;
         //controla que la Balon no salga de los limites del contenedor
         if (X < this.limite_izquierda) {
-            X = 0;     
-            velocidad_X = -velocidad_X; 
+            X = 0;
+            velocidad_X = -velocidad_X;
+            resources.Audio("/Audios/", "brick", ".wav");
         } else if (X > limite_derecha) {
-            X = limite_derecha; 
-            velocidad_X = -velocidad_X; 
+            X = limite_derecha;
+            velocidad_X = -velocidad_X;
+            resources.Audio("/Audios/", "brick", ".wav");
         }
         if (Y < this.limite_superior) {
             Y = 0;
             velocidad_Y = -velocidad_Y;
+            resources.Audio("/Audios/", "brick", ".wav");
 
         } else if ((Y > limite_inferior)) {
-            Y =  limite_inferior;
+            Y = limite_inferior;
             velocidad_Y = -velocidad_Y;
+            resources.Audio("/Audios/", "barra", ".wav");
         }
+        /*else if ((Y == limite_inferior-20&&(X>=barra.getX()&&X<=barra.getX()+100))) {
+            Y = limite_inferior;
+            velocidad_Y = -velocidad_Y;
+            resources.Audio("/Audios/", "barra", ".wav");
+        }*/
     }
 
-    public void velocidadXY(){
-        velocidad_X = 6;
-        velocidad_Y = 6;
+    public void velocidadXY() {
+        velocidad_X = 3;
+        velocidad_Y = 3;
     }
-    
+
     public void dibujar(Graphics g) {
-        Graphics2D background=(Graphics2D)g;
-        Graphics2D g2 = (Graphics2D)g;
-        background.drawImage(fondo, 0,0,limite_derecha+balon.getWidth(null),limite_inferior+balon.getHeight(null), null);
+        Graphics2D background = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g;
+        background.drawImage(fondo, 0, 0, limite_derecha + balon.getWidth(null), limite_inferior + balon.getHeight(null), null);
         g2.drawImage(balon, X, Y, null);
         //g.fillOval(X, Y, 15, 15);
     }
 
     //devuelve un número aleatorio entre 1 y MAX
-    private int aleatorio(int Max){
-        return (int) (Math.random()*Max+1);
+    private int aleatorio(int Max) {
+        return (int) (Math.random() * Max + 1);
     }
 
     public int getX() {
@@ -95,6 +112,5 @@ public class Pelota {
     public int getY() {
         return Y;
     }
-    
-    
+
 }
