@@ -26,12 +26,13 @@ public class Menu extends JPanel {
     String Titulo = "Duppont", Score = "Score:", Vidas = "Vidas:",Time="Time: ";
     String SegundosSet = "0";
     int TimeOut = 850;
+    ImageIcon fondo = new ImageIcon(getClass().getResource("image.png"));
 
     public Menu() {
         this.setSize(210, 460);
         this.setLocation(800, 7);
-        this.setBackground(Color.decode("#e1d1f2"));
-        title = new ImageIcon(getClass().getResource("Title.gif")).getImage();
+        this.setBackground(Color.LIGHT_GRAY);
+        title = new ImageIcon(getClass().getResource("Title.png")).getImage();
         Scores = new JLabel("Score");
         Scores.setLocation(820, 135);
 
@@ -45,6 +46,8 @@ public class Menu extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         //delaySegundo();
+        g.setColor(Color.LIGHT_GRAY);
+        g.drawString(SegundosSet, 80, 135);
         g.setColor(Color.decode("#de2f51"));
         g.setFont(new Font("DFGothic-EB", Font.PLAIN, 30));
         g.drawImage(title, 30, 20, this);
@@ -52,7 +55,6 @@ public class Menu extends JPanel {
         g.setFont(new Font("DFGothic-EB", Font.PLAIN, 18));
         g.drawString(Time, 20, 135);
         g.setColor(Color.decode("#e1d1f2"));
-        g.fillOval(80, 135, 90, 150);
         g.setColor(Color.decode("#000000"));
 
         if (TimeOut >= 0) {

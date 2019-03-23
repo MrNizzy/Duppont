@@ -34,7 +34,7 @@ public class Pelota {
         //imagen de Balon
         if (tamanio == 0) {
             balon = new ImageIcon(getClass().getResource("Bola.png")).getImage();
-            fondo = new ImageIcon(getClass().getResource("background.gif")).getImage();
+            fondo = new ImageIcon(getClass().getResource("image.png")).getImage();
         }
         if (tamanio == 1) {
             balon = new ImageIcon(getClass().getResource("pelota48.png")).getImage();
@@ -78,7 +78,7 @@ public class Pelota {
     public void dibujar(Graphics g) {
         Graphics2D background=(Graphics2D)g;
         Graphics2D g2 = (Graphics2D)g;
-        background.drawImage(fondo, 0,0,5000,5000, null);
+        background.drawImage(fondo, 0,0,limite_derecha+balon.getWidth(null),limite_inferior+balon.getHeight(null), null);
         g2.drawImage(balon, X, Y, null);
         //g.fillOval(X, Y, 15, 15);
     }

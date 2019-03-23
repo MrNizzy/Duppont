@@ -2,6 +2,7 @@
 package Game;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Ventana extends javax.swing.JFrame {
 
@@ -9,7 +10,8 @@ public class Ventana extends javax.swing.JFrame {
     Animacion pelota;
     private int Score;
     Menu menu;
-    ColorFondo Fondo;
+    ImageIcon ImgFondo = new ImageIcon(getClass().getResource("BackgroundSolid.png"));
+    JLabel Fondo;
     
     public Ventana() {
         initComponents();
@@ -19,8 +21,10 @@ public class Ventana extends javax.swing.JFrame {
         setResizable(false); // No maximizar ventana
         //se crea instancia a Animacion de animacion y se añade a la Principal
         
-        Fondo = new ColorFondo();
+        Fondo = new JLabel();
+        Fondo.setIcon(ImgFondo);
         menu = new Menu();
+        Fondo.setBounds(0, 0, this.getWidth(), this.getHeight()-30);
         
         this.add(menu);
         this.add(Fondo);
