@@ -48,6 +48,10 @@ public class Pelota {
             balon = new ImageIcon(getClass().getResource(resources.getRuta()+"pelota48.png")).getImage();
         }
     }
+    public void reflejar(){
+       velocidad_Y=-velocidad_Y;
+        Y=Y-10;  
+    }
 
     //dado las dimensiones del contendor JPanel
     public void LimitesXY(int width, int height) {
@@ -105,11 +109,10 @@ public class Pelota {
         return (int) (Math.random() * Max + 1);
     }
 
-    public int getX() {
+     int GetXP(){
         return X;
     }
-
-    public int getY() {
+    int GetYP(){
         return Y;
     }
 

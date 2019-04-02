@@ -64,6 +64,15 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
     public void setX(int x) {
         this.x = x;
     }
+    //captura posicion en el eje x de la barra
+    int GetXB(){
+        return this.getX();
+    }
+    //captura posicion en el eje y de la barra
+    int GetYB(){
+        return this.getY();
+        
+    }
 
     @Override
     public void keyReleased(KeyEvent ke) {

@@ -51,9 +51,19 @@ public class GamePanel extends JPanel{
                 mipelota.traslacion(x,y);
 
                 repaint();
+               
             }
         });
     }
+    void colision (){
+   
+    if((mipelota.GetXP()>=barra.GetXB())&  //b->balon  p->pelota
+		   ( mipelota.GetXP()<=barra.GetXB()+barra.getAncho())&
+		    (mipelota.GetYP()+barra.getAlto()>=barra.GetYB())){
+        mipelota.reflejar();
+}
+}
+    
 
     public double getPanel_Width() {
         return Panel_Width;
@@ -71,6 +81,7 @@ public class GamePanel extends JPanel{
         g.setColor(Color.decode("#ff6600"));
         Graphics2D g2 = (Graphics2D)g;
         Graphics2D g3 = (Graphics2D)g;
+        colision();
     }
 
     @Override
@@ -78,6 +89,7 @@ public class GamePanel extends JPanel{
         super.paintComponent(g);
         mipelota.dibujar(g);
         nivel1.dibujar(g);
+        
     }
 
     //Controla el inicio y fin de la animación
