@@ -19,6 +19,20 @@ public final class lv1 {
     private final Image Block_6;
     private final Image Block_0;
     private final ResourcesBrick resources;
+     private final int TX=85;//tamaño del ladrillo en X
+    private final int TY=35;//tamaño del ladrillo en Y
+    //private int [][] lv1={1,2,4,0,2,4,2,4,3,2,3,1,2,1,2,1,2,3,2,0,1,2,2,4,2,1,2,1
+    //private int CX[]={85,175,265,355,445,535,625};//coordenada x
+    private int CX[]={85,175,265,355,445,535,625};
+    
+     //private int CY[]={10,35,60,85,110,130};
+    private int CY[]={10,50,90,130,170,210};//185,210   coordenada y
+    
+   private int LV1[][]={{1,2,3,0,2,3,2},{3,3,2,3,1,2,1},{2,1,2,3,2,0,1},{2,2,0,2,1,2,1},{1,2,0,0,2,3,2},{1,3,2,3,1,2,1}};
+   private int LV2[][]={{1,2,4,0,2,4,2},{4,3,2,3,1,2,1},{2,1,2,3,2,0,1},{2,2,4,2,1,2,1},{4,3,2,3,1,2,1},{2,1,2,3,2,0,1}};
+   private int LV3[][]={{2,1,2,3,2,0,1},{2,2,4,2,1,2,1},{2,2,4,2,1,2,1},{2,2,4,2,1,2,1},{4,3,2,3,1,2,1},{2,1,2,3,2,0,1}};
+   // private int LV1Estados[]=new int[28];
+   
 
     public lv1() {
 
@@ -41,79 +55,37 @@ public final class lv1 {
         Graphics2D g1 = (Graphics2D) g;
         Graphics2D g2 = (Graphics2D) g;
         Graphics2D g3 = (Graphics2D) g;
-        //Primera fila
-        g1.drawImage(Block_1, 85, 10, null);
-        g1.drawImage(Block_2, 175, 10, null);
-        g1.drawImage(Block_1, 265, 10, null);
-        g1.drawImage(Block_2, 355, 10, null);
-        g1.drawImage(Block_1, 445, 10, null);
-        g1.drawImage(Block_2, 535, 10, null);
-        g1.drawImage(Block_1, 625, 10, null);
-        //Segunda Fila
-        g1.drawImage(Block_1, 85, 35, null);
-        g1.drawImage(Block_1, 175, 35, null);
-        g1.drawImage(Block_1, 265, 35, null);
-        g1.drawImage(Block_1, 355, 35, null);
-        g1.drawImage(Block_1, 445, 35, null);
-        g1.drawImage(Block_1, 535, 35, null);
-        g1.drawImage(Block_1, 625, 35, null);
-        //Tercera Fila
-        g1.drawImage(Block_2, 85, 60, null);
-        g1.drawImage(Block_1, 175, 60, null);
-        g1.drawImage(Block_2, 265, 60, null);
-        g1.drawImage(Block_1, 355, 60, null);
-        g1.drawImage(Block_2, 445, 60, null);
-        g1.drawImage(Block_1, 535, 60, null);
-        g1.drawImage(Block_2, 625, 60, null);
-        //Cuarta Fila
-        g1.drawImage(Block_4, 85, 85, null);
-        g1.drawImage(Block_4, 175, 85, null);
-        g1.drawImage(Block_4, 265, 85, null);
-        g1.drawImage(Block_4, 355, 85, null);
-        g1.drawImage(Block_4, 445, 85, null);
-        g1.drawImage(Block_4, 535, 85, null);
-        g1.drawImage(Block_4, 625, 85, null);
-        //Quinta Fila
-        g1.drawImage(Block_2, 85, 110, null);
-        g1.drawImage(Block_2, 175, 110, null);
-        g1.drawImage(Block_2, 265, 110, null);
-        g1.drawImage(Block_2, 355, 110, null);
-        g1.drawImage(Block_2, 445, 110, null);
-        g1.drawImage(Block_2, 535, 110, null);
-        g1.drawImage(Block_2, 625, 110, null);
-        //Sexta Fila
-        g1.drawImage(Block_1, 85, 135, null);
-        g1.drawImage(Block_1, 175, 135, null);
-        g1.drawImage(Block_1, 265, 135, null);
-        g1.drawImage(Block_1, 355, 135, null);
-        g1.drawImage(Block_1, 445, 135, null);
-        g1.drawImage(Block_1, 535, 135, null);
-        g1.drawImage(Block_1, 625, 135, null);
-        //Septima Fila
-        g1.drawImage(Block_4, 85, 160, null);
-        g1.drawImage(Block_4, 175, 160, null);
-        g1.drawImage(Block_4, 265, 160, null);
-        g1.drawImage(Block_0, 355, 160, null);
-        g1.drawImage(Block_4, 445, 160, null);
-        g1.drawImage(Block_4, 535, 160, null);
-        g1.drawImage(Block_4, 625, 160, null);
-        //Octava Fila
-        g1.drawImage(Block_6, 85, 185, null);
-        g1.drawImage(Block_6, 175, 185, null);
-        g1.drawImage(Block_6, 265, 185, null);
-        g1.drawImage(Block_6, 355, 185, null);
-        g1.drawImage(Block_6, 445, 185, null);
-        g1.drawImage(Block_6, 535, 185, null);
-        g1.drawImage(Block_6, 625, 185, null);
-        //Novena Fila
-        g1.drawImage(Block_0, 85, 210, null);
-        g1.drawImage(Block_0, 175, 210, null);
-        g1.drawImage(Block_2, 265, 210, null);
-        g1.drawImage(Block_2, 355, 210, null);
-        g1.drawImage(Block_2, 445, 210, null);
-        g1.drawImage(Block_0, 535, 210, null);
-        g1.drawImage(Block_0, 625, 210, null);
-
+        for(int i=0;i<6;i++){
+          for(int j=0;j<7;j++){
+             if(LV1[i][j]==1){
+                g1.drawImage(Block_1, CX[j], CY[i],TX,TY, null); 
+             //   VidasL[i][j]=1;
+             }
+            else if(LV1[i][j]==2){
+                g1.drawImage(Block_2, CX[j], CY[i],TX,TY, null);  
+                 //VidasL[i][j]=2;
+             }
+            else if(LV1[i][j]==3){
+                g1.drawImage(Block_3, CX[j], CY[i],TX,TY, null);  
+                 //VidasL[i][j]=3;
+             }
+              else if(LV1[i][j]==4){
+                g1.drawImage(Block_4, CX[j], CY[i],TX,TY, null); 
+               //  VidasL[i][j]=4;
+             }
+          }
+      }
+    }
+    public int[] GetCX(){
+        return CX;
+    }
+    public int[] GetCY(){
+        return CY;
+    }
+    public int[][] GetLevel1(){
+        return LV1;
+    }
+    
     }
 
-}
+

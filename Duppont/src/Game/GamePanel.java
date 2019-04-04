@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -24,7 +25,10 @@ public class GamePanel extends JPanel{
     private Pelota mipelota;
     Barra barra;
     private final lv1 nivel1;
-
+    lv1 niveles=new lv1();
+  //  private int ladrillos[9][7];
+    
+    int Estados[][]=niveles.GetLevel1();
     public GamePanel(Dimension d, int tamanio) {
         //Propiedades de la ventana
         this.setSize(d);
@@ -41,7 +45,7 @@ public class GamePanel extends JPanel{
         mipelota.LimitesXY(getWidth(), getHeight());
         barra=new Barra(300,(int)Panel_Height-20);
         barra.setLayout(null);
-        nivel1=new lv1();
+        
         
         add(barra);
         // Para la animación de la pelota
@@ -60,10 +64,46 @@ public class GamePanel extends JPanel{
     if((mipelota.GetXP()>=barra.GetXB())&  //b->balon  p->pelota
 		   ( mipelota.GetXP()<=barra.GetXB()+barra.getAncho())&
 		    (mipelota.GetYP()+barra.getAlto()>=barra.GetYB())){
-        mipelota.reflejar();
+        mipelota.reflejarY();
 }
 }
-    
+void colisionL(int[] CX,int[] CY,int[][] estados){ 
+  for(int i=0;i<6;i++){
+    for(int j=0;j<7;j++){
+      if(estados[i][j]>0){
+        boolean CN = new Rectangle(CX[j],CY[i],85,5).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
+        boolean CI = new Rectangle(CX[j],CY[i],10,35).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
+        boolean CD = new Rectangle(CX[j]+85,CY[i],10,35).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
+        boolean CS = new Rectangle(CX[j],CY[i]+35,85,10).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
+            if(CN){//si colosiona con el lado superiror.
+                if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
+                    mipelota.reflejarY();
+                    estados[i][j]=estados[i][j]-1;
+                }
+             }
+            if(CI){//si colosiona con el lado superiror.
+                if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
+                    mipelota.reflejarX();
+                    estados[i][j]=estados[i][j]-1;
+                }
+            }
+            if(CS){//si colosiona con el lado superiror.
+                if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
+                    mipelota.reflejarY();
+                    estados[i][j]=estados[i][j]-1;
+                }
+            }
+            if(CD){//si colosiona con el lado superiror.
+                if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
+                    mipelota.reflejarX();
+                    estados[i][j]=estados[i][j]-1;
+                }
+            }
+        }
+      }
+      
+    }
+}    
 
     public double getPanel_Width() {
         return Panel_Width;

@@ -16,8 +16,8 @@ public class Pelota {
     private int X;
     private int Y;
     //Velocidades
-    private int velocidad_X;
-    private int velocidad_Y;
+    private int Dx;
+    private int Dy;
     //Limites
     private final int limite_izquierda = 0;
     private int limite_derecha;
@@ -48,10 +48,14 @@ public class Pelota {
             balon = new ImageIcon(getClass().getResource(resources.getRuta()+"pelota48.png")).getImage();
         }
     }
-    public void reflejar(){
-       velocidad_Y=-velocidad_Y;
-        Y=Y-10;  
+    public void reflejarY(){
+       Dy=-Dy;
+        Y=Y-5;
     }
+     public void reflejarX(){
+         Dx=-Dx;
+         X=X-5;
+     }
 
     //dado las dimensiones del contendor JPanel
     public void LimitesXY(int width, int height) {
@@ -62,26 +66,26 @@ public class Pelota {
     //recalcula variables para dar la sensacion de movimiento
     public void traslacion(int x, int y) {
         //nueva posicion
-        X += velocidad_X;
-        Y += velocidad_Y;
+        X += Dx;
+        Y += Dx;
         //controla que la Balon no salga de los limites del contenedor
         if (X < this.limite_izquierda) {
             X = 0;
-            velocidad_X = -velocidad_X;
+           Dx= -Dx;
             resources.Audio("/Audios/", "brick", ".wav");
         } else if (X > limite_derecha) {
             X = limite_derecha;
-            velocidad_X = -velocidad_X;
+            Dx = -Dx;
             resources.Audio("/Audios/", "brick", ".wav");
         }
         if (Y < this.limite_superior) {
             Y = 0;
-            velocidad_Y = -velocidad_Y;
+            Dy = -Dy;
             resources.Audio("/Audios/", "brick", ".wav");
 
         } else if ((Y > limite_inferior)) {
             Y = limite_inferior;
-            velocidad_Y = -velocidad_Y;
+            Dy = -Dy;
             resources.Audio("/Audios/", "barra", ".wav");
         }
         /*else if ((Y == limite_inferior-20&&(X>=barra.getX()&&X<=barra.getX()+100))) {
@@ -91,10 +95,7 @@ public class Pelota {
         }*/
     }
 
-    public void velocidadXY() {
-        velocidad_X = 3;
-        velocidad_Y = 3;
-    }
+   
 
     public void dibujar(Graphics g) {
         Graphics2D background = (Graphics2D) g;
@@ -115,5 +116,6 @@ public class Pelota {
     int GetYP(){
         return Y;
     }
+
 
 }
