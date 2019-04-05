@@ -48,14 +48,7 @@ public class Pelota {
             balon = new ImageIcon(getClass().getResource(resources.getRuta()+"pelota48.png")).getImage();
         }
     }
-    public void reflejarY(){
-       Dy=-Dy;
-        Y=Y-5;
-    }
-     public void reflejarX(){
-         Dx=-Dx;
-         X=X-5;
-     }
+    
 
     //dado las dimensiones del contendor JPanel
     public void LimitesXY(int width, int height) {
@@ -67,25 +60,25 @@ public class Pelota {
     public void traslacion(int x, int y) {
         //nueva posicion
         X += Dx;
-        Y += Dx;
+        Y += Dy;
         //controla que la Balon no salga de los limites del contenedor
         if (X < this.limite_izquierda) {
             X = 0;
-           Dx= -Dx;
+            Dx=-Dx;
             resources.Audio("/Audios/", "brick", ".wav");
         } else if (X > limite_derecha) {
             X = limite_derecha;
-            Dx = -Dx;
+            Dx=-Dx;
             resources.Audio("/Audios/", "brick", ".wav");
         }
         if (Y < this.limite_superior) {
             Y = 0;
-            Dy = -Dy;
+            Dy=-Dy;
             resources.Audio("/Audios/", "brick", ".wav");
 
         } else if ((Y > limite_inferior)) {
             Y = limite_inferior;
-            Dy = -Dy;
+            Dy=-Dy;
             resources.Audio("/Audios/", "barra", ".wav");
         }
         /*else if ((Y == limite_inferior-20&&(X>=barra.getX()&&X<=barra.getX()+100))) {
@@ -94,8 +87,25 @@ public class Pelota {
             resources.Audio("/Audios/", "barra", ".wav");
         }*/
     }
+     public void reflejarY(){
+       Dy=-Dy;
+        Y=Y-5;
+    }
+     public void reflejarX(){
+         Dx=-Dx;
+         X=X-5;
+     }
+    int GetXP(){
+        return X;
+    }
+    int GetYP(){
+        return Y;
+    }
 
-   
+    public void velocidadXY() {
+        Dx= 3;
+        Dy = 3;
+    }
 
     public void dibujar(Graphics g) {
         Graphics2D background = (Graphics2D) g;
@@ -110,12 +120,6 @@ public class Pelota {
         return (int) (Math.random() * Max + 1);
     }
 
-     int GetXP(){
-        return X;
-    }
-    int GetYP(){
-        return Y;
-    }
-
+    
 
 }

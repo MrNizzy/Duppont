@@ -19,7 +19,7 @@ public final class lv1 {
     private final Image Block_6;
     private final Image Block_0;
     private final ResourcesBrick resources;
-     private final int TX=85;//tamaño del ladrillo en X
+    private final int TX=85;//tamaño del ladrillo en X
     private final int TY=35;//tamaño del ladrillo en Y
     //private int [][] lv1={1,2,4,0,2,4,2,4,3,2,3,1,2,1,2,1,2,3,2,0,1,2,2,4,2,1,2,1
     //private int CX[]={85,175,265,355,445,535,625};//coordenada x
@@ -33,7 +33,7 @@ public final class lv1 {
    private int LV3[][]={{2,1,2,3,2,0,1},{2,2,4,2,1,2,1},{2,2,4,2,1,2,1},{2,2,4,2,1,2,1},{4,3,2,3,1,2,1},{2,1,2,3,2,0,1}};
    // private int LV1Estados[]=new int[28];
    
-
+      
     public lv1() {
 
         resources = new ResourcesBrick();
@@ -50,12 +50,14 @@ public final class lv1 {
         Block_0 = new ImageIcon(getClass().getResource(resources.getRuta() + "Block_ladrillo.png")).getImage();
 
     }
+    ////////////////////////////////////////////////////////////////////////////////////////
+
 
     public void dibujar(Graphics g) {
         Graphics2D g1 = (Graphics2D) g;
         Graphics2D g2 = (Graphics2D) g;
         Graphics2D g3 = (Graphics2D) g;
-        for(int i=0;i<6;i++){
+      for(int i=0;i<6;i++){
           for(int j=0;j<7;j++){
              if(LV1[i][j]==1){
                 g1.drawImage(Block_1, CX[j], CY[i],TX,TY, null); 
@@ -86,6 +88,11 @@ public final class lv1 {
         return LV1;
     }
     
+    
+    //////////////////////////////////////////////      
+        
+      
     }
+
 
 

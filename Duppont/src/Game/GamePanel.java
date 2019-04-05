@@ -3,11 +3,12 @@ package Game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.Graphics2D; 
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -24,13 +25,17 @@ public class GamePanel extends JPanel{
     private final Timer timer;
     private Pelota mipelota;
     Barra barra;
-    private final lv1 nivel1;
     lv1 niveles=new lv1();
+   
   //  private int ladrillos[9][7];
     
     int Estados[][]=niveles.GetLevel1();
+    
+
+    
     public GamePanel(Dimension d, int tamanio) {
         //Propiedades de la ventana
+        
         this.setSize(d);
         this.setPreferredSize(d);
         Panel_Width = d.getWidth();
@@ -41,12 +46,17 @@ public class GamePanel extends JPanel{
         
 
         //Objetos
-        mipelota = new Pelota(20, 20, tamanio);
+        mipelota = new Pelota(500, 300, tamanio);
         mipelota.LimitesXY(getWidth(), getHeight());
         barra=new Barra(300,(int)Panel_Height-20);
         barra.setLayout(null);
         
         
+        ///////////////////////////////////
+     
+        
+        
+        //////////////////////////
         add(barra);
         // Para la animación de la pelota
         timer = new Timer(16, new ActionListener() {
@@ -55,15 +65,17 @@ public class GamePanel extends JPanel{
                 mipelota.traslacion(x,y);
 
                 repaint();
-               
             }
         });
     }
-    void colision (){
+    
+    
+    
+void colision (){
    
     if((mipelota.GetXP()>=barra.GetXB())&  //b->balon  p->pelota
-		   ( mipelota.GetXP()<=barra.GetXB()+barra.getAncho())&
-		    (mipelota.GetYP()+barra.getAlto()>=barra.GetYB())){
+		   ( mipelota.GetXP()<=barra.GetXB()+barra.GetAncho())&
+		    (mipelota.GetYP()+barra.GetAlto()>=barra.GetYB())){
         mipelota.reflejarY();
 }
 }
@@ -103,8 +115,7 @@ void colisionL(int[] CX,int[] CY,int[][] estados){
       }
       
     }
-}    
-
+}
     public double getPanel_Width() {
         return Panel_Width;
     }
@@ -121,15 +132,15 @@ void colisionL(int[] CX,int[] CY,int[][] estados){
         g.setColor(Color.decode("#ff6600"));
         Graphics2D g2 = (Graphics2D)g;
         Graphics2D g3 = (Graphics2D)g;
-        colision();
+       colision();
+       colisionL(niveles.GetCX(),niveles.GetCY(),Estados);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         mipelota.dibujar(g);
-        nivel1.dibujar(g);
-        
+        niveles.dibujar(g);
     }
 
     //Controla el inicio y fin de la animación

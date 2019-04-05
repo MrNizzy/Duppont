@@ -31,6 +31,21 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
         
 
     }
+    int GetAlto(){
+        return this.alto;
+    }
+    int GetAncho(){
+        return this.ancho;
+    }
+    //captura posicion en el eje x de la barra
+    int GetXB(){
+        return this.getX();
+    }
+    //captura posicion en el eje y de la barra
+    int GetYB(){
+        return this.getY();
+        
+    }
 
     @Override
     public void keyTyped(KeyEvent ke) {
@@ -46,7 +61,7 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
                 this.setLocation(this.getX() - 20, this.getY());//si la tecla fue izquierda la posicion en x se deplazara 5 
                 //pixeles a la izquierda = -5
             }
-            System.out.println("Izquierda: X=" + this.getX() + "\n");
+           // System.out.println("Izquierda: X=" + this.GetXB() + "\n");
         }
         if (evento.getExtendedKeyCode() == KeyEvent.VK_RIGHT) {//captura la tecla y pregunta si fue la tecla derecha
             if (getX() >= 680) {
@@ -56,7 +71,7 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
                 this.setLocation(this.getX() + 20, this.getY());//si la tecla fue derecha la posicion en x se deplazara 5 
                 //pixeles a la derecha = 5
             }
-            System.out.println("Derecha: X=" + this.getX() + "\n");
+         //   System.out.println("Derecha: X=" + this.GetXB() + "\n");
         }
 
     }
@@ -64,27 +79,10 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
     public void setX(int x) {
         this.x = x;
     }
-    //captura posicion en el eje x de la barra
-    int GetXB(){
-        return this.getX();
-    }
-    //captura posicion en el eje y de la barra
-    int GetYB(){
-        return this.getY();
-        
-    }
 
     @Override
     public void keyReleased(KeyEvent ke) {
         
-    }
-
-    public int getAncho() {
-        return this.ancho;
-    }
-
-    public int getAlto() {
-        return this.alto;
     }
 
     @Override
