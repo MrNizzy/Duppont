@@ -3,7 +3,7 @@ package Game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D; 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +15,7 @@ import javax.swing.Timer;
  *
  * @author Nizzy
  */
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel {
 
     private int x, y;
     private final double Panel_Width;
@@ -24,17 +24,14 @@ public class GamePanel extends JPanel{
     private final Timer timer;
     private Pelota mipelota;
     Barra barra;
-    lv1 niveles=new lv1();
-   
-  //  private int ladrillos[9][7];
-    
-    int Estados[][]=niveles.GetLevel1();
-    
+    lv1 niveles = new lv1();
 
-    
+    //  private int ladrillos[9][7];
+    int Estados[][] = niveles.GetLevel1();
+
     public GamePanel(Dimension d, int tamanio) {
         //Propiedades de la ventana
-        
+
         this.setSize(d);
         this.setPreferredSize(d);
         Panel_Width = d.getWidth();
@@ -42,84 +39,78 @@ public class GamePanel extends JPanel{
         this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         this.setBackground(new Color(225, 209, 242));
         setLayout(null);
-        
 
         //Objetos
         mipelota = new Pelota(500, 300, tamanio);
         mipelota.LimitesXY(getWidth(), getHeight());
-        barra=new Barra(300,(int)Panel_Height-20);
+        barra = new Barra(300, (int) Panel_Height - 20);
         barra.setLayout(null);
-        
-        
+
         ///////////////////////////////////
-     
-        
-        
         //////////////////////////
         add(barra);
         // Para la animación de la pelota
         timer = new Timer(16, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mipelota.traslacion(x,y);
+                mipelota.traslacion(x, y);
 
                 repaint();
             }
         });
     }
-    
-    
-    
-void colision (){
-boolean BI = new Rectangle(barra.GetXB(),barra.GetYB(),50,20).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
-boolean BD = new Rectangle(barra.GetXB()+50,barra.GetYB(),50,20).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
-if(BI || BD) {
- if(BI && mipelota.GetDX() < 0 || BD && mipelota.GetDX() > 0) {
-     mipelota.reflejarY();
- }
- else{
-     mipelota.reflejarY();
-     mipelota.reflejarX();
- }
-}
-}
-void colisionL(int[] CX,int[] CY,int[][] estados){ 
-  for(int i=0;i<6;i++){
-    for(int j=0;j<7;j++){
-      if(estados[i][j]>0){
-        boolean CN = new Rectangle(CX[j],CY[i],85,5).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
-        boolean CI = new Rectangle(CX[j],CY[i],10,35).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
-        boolean CD = new Rectangle(CX[j]+85,CY[i],10,35).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
-        boolean CS = new Rectangle(CX[j],CY[i]+35,85,10).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
-            if(CN){//si colosiona con el lado superiror.
-                if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
-                    mipelota.reflejarYN(CY[i]);
-                    estados[i][j]=estados[i][j]-1;
-                }
-             }
-            if(CI){//si colosiona con el lado superiror.
-                if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
-                    mipelota.reflejarXI(CX[j]);
-                    estados[i][j]=estados[i][j]-1;
-                }
-            }
-            if(CS){//si colosiona con el lado superiror.
-                if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
-                    mipelota.reflejarYS(CY[i]);
-                    estados[i][j]=estados[i][j]-1;
-                }
-            }
-            if(CD){//si colosiona con el lado superiror.
-                if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
-                    mipelota.reflejarXD(CX[j]);
-                    estados[i][j]=estados[i][j]-1;
-                }
+
+    void colision() {
+        boolean BI = new Rectangle(barra.GetXB(), barra.GetYB(), 50, 20).intersects(new Rectangle(mipelota.GetXP(), mipelota.GetYP(), 15, 15));
+        boolean BD = new Rectangle(barra.GetXB() + 50, barra.GetYB(), 50, 20).intersects(new Rectangle(mipelota.GetXP(), mipelota.GetYP(), 15, 15));
+        if (BI || BD) {
+            if (BI && mipelota.GetDX() < 0 || BD && mipelota.GetDX() > 0) {
+                mipelota.reflejarY();
+            } else {
+                mipelota.reflejarY();
+                mipelota.reflejarX();
             }
         }
-      }
-      
     }
-}
+
+    void colisionL(int[] CX, int[] CY, int[][] estados) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (estados[i][j] > 0) {
+                    boolean CN = new Rectangle(CX[j], CY[i], 85, 5).intersects(new Rectangle(mipelota.GetXP(), mipelota.GetYP(), 15, 15));
+                    boolean CI = new Rectangle(CX[j], CY[i], 10, 35).intersects(new Rectangle(mipelota.GetXP(), mipelota.GetYP(), 15, 15));
+                    boolean CD = new Rectangle(CX[j] + 85, CY[i], 10, 35).intersects(new Rectangle(mipelota.GetXP(), mipelota.GetYP(), 15, 15));
+                    boolean CS = new Rectangle(CX[j], CY[i] + 35, 85, 10).intersects(new Rectangle(mipelota.GetXP(), mipelota.GetYP(), 15, 15));
+                    if (CN) {//si colosiona con el lado superiror.
+                        if (estados[i][j] < 4) {//dibuja una explosion si el bloque no es indestructible (valor 4)
+                            mipelota.reflejarYN(CY[i]);
+                            estados[i][j] = estados[i][j] - 1;
+                        }
+                    }
+                    if (CI) {//si colosiona con el lado superiror.
+                        if (estados[i][j] < 4) {//dibuja una explosion si el bloque no es indestructible (valor 4)
+                            mipelota.reflejarXI(CX[j]);
+                            estados[i][j] = estados[i][j] - 1;
+                        }
+                    }
+                    if (CS) {//si colosiona con el lado superiror.
+                        if (estados[i][j] < 4) {//dibuja una explosion si el bloque no es indestructible (valor 4)
+                            mipelota.reflejarYS(CY[i]);
+                            estados[i][j] = estados[i][j] - 1;
+                        }
+                    }
+                    if (CD) {//si colosiona con el lado superiror.
+                        if (estados[i][j] < 4) {//dibuja una explosion si el bloque no es indestructible (valor 4)
+                            mipelota.reflejarXD(CX[j]);
+                            estados[i][j] = estados[i][j] - 1;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
     public double getPanel_Width() {
         return Panel_Width;
     }
@@ -132,12 +123,12 @@ void colisionL(int[] CX,int[] CY,int[][] estados){
     public void paint(Graphics g) {
         //Fondo
         super.paint(g);
-        
+
         g.setColor(Color.decode("#ff6600"));
-        Graphics2D g2 = (Graphics2D)g;
-        Graphics2D g3 = (Graphics2D)g;
-       colision();
-       colisionL(niveles.GetCX(),niveles.GetCY(),Estados);
+        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g3 = (Graphics2D) g;
+        colision();
+        colisionL(niveles.GetCX(), niveles.GetCY(), Estados);
     }
 
     @Override

@@ -28,7 +28,6 @@ public class Pelota {
     private Image fondo;
     //Audio e Imagenes
     private final ResourcesBrick resources;
-    
 
     public Pelota(int x, int y, int tamanio) {
         //coordenadas iniciales
@@ -41,14 +40,13 @@ public class Pelota {
 
         //imagen de Balon
         if (tamanio == 0) {
-            balon = new ImageIcon(getClass().getResource(resources.getRuta()+"Bola.png")).getImage();
-            fondo = new ImageIcon(getClass().getResource(resources.getRuta()+"image.png")).getImage();
+            balon = new ImageIcon(getClass().getResource(resources.getRuta() + "Bola.png")).getImage();
+            fondo = new ImageIcon(getClass().getResource(resources.getRuta() + "image.png")).getImage();
         }
         if (tamanio == 1) {
-            balon = new ImageIcon(getClass().getResource(resources.getRuta()+"pelota48.png")).getImage();
+            balon = new ImageIcon(getClass().getResource(resources.getRuta() + "pelota48.png")).getImage();
         }
     }
-    
 
     //dado las dimensiones del contendor JPanel
     public void LimitesXY(int width, int height) {
@@ -64,21 +62,21 @@ public class Pelota {
         //controla que la Balon no salga de los limites del contenedor
         if (X < this.limite_izquierda) {
             X = 0;
-            Dx=-Dx;
+            Dx = -Dx;
             resources.Audio("/Audios/", "brick", ".wav");
         } else if (X > limite_derecha) {
             X = limite_derecha;
-            Dx=-Dx;
+            Dx = -Dx;
             resources.Audio("/Audios/", "brick", ".wav");
         }
         if (Y < this.limite_superior) {
             Y = 0;
-            Dy=-Dy;
+            Dy = -Dy;
             resources.Audio("/Audios/", "brick", ".wav");
 
         } else if ((Y > limite_inferior)) {
             Y = limite_inferior;
-            Dy=-Dy;
+            Dy = -Dy;
             resources.Audio("/Audios/", "barra", ".wav");
         }
         /*else if ((Y == limite_inferior-20&&(X>=barra.getX()&&X<=barra.getX()+100))) {
@@ -87,49 +85,55 @@ public class Pelota {
             resources.Audio("/Audios/", "barra", ".wav");
         }*/
     }
-    public void reflejarY(){
-       Dy*=-1;
-        Y=Y-5;
+
+    public void reflejarY() {
+        Dy *= -1;
+        Y = Y - 5;
     }
-    
-    public void reflejarX(){
-       Dx*=-1;
-        X=X-5;
+
+    public void reflejarX() {
+        Dx *= -1;
+        X = X - 5;
     }
-    
-     public void reflejarYN(int coord){
-       Dy*=-1;
-        Y=coord-15;
+
+    public void reflejarYN(int coord) {
+        Dy *= -1;
+        Y = coord - 15;
     }
-     public void reflejarXI(int coord){
-         Dx*=-1;
-         X=coord-15;
-     }
-     public void reflejarXD(int coord){
-         Dx*=-1;
-         X=coord+100;
-     }
-     public void reflejarYS(int coord){
-       Dy*=-1;
-        Y=coord+50;
+
+    public void reflejarXI(int coord) {
+        Dx *= -1;
+        X = coord - 15;
     }
-    int GetXP(){
+
+    public void reflejarXD(int coord) {
+        Dx *= -1;
+        X = coord + 100;
+    }
+
+    public void reflejarYS(int coord) {
+        Dy *= -1;
+        Y = coord + 50;
+    }
+
+    int GetXP() {
         return X;
     }
-    int GetYP(){
+
+    int GetYP() {
         return Y;
     }
-    
+
     int GetDX() {
         return Dx;
     }
-    
+
     int GetDY() {
         return Dy;
     }
 
     public void velocidadXY() {
-        Dx= 2;
+        Dx = 2;
         Dy = 3;
     }
 
@@ -145,7 +149,5 @@ public class Pelota {
     private int aleatorio(int Max) {
         return (int) (Math.random() * Max + 1);
     }
-
-    
 
 }

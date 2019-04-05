@@ -20,7 +20,6 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
     public Barra(int x, int y) {
 
         //el constructor recibe por parametro la posicion inicial de la paleta
-        
         //setBackground(Color.black);
         setIcon(fondo);
         this.x = x;
@@ -28,23 +27,26 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
         this.setBounds(x, y, this.ancho, this.alto); //cordenadas de la paleta y tamaño
         this.addMouseMotionListener(this);
         this.addKeyListener(this); //añadir al constructor la escucha del teclado
-        
 
     }
-    int GetAlto(){
+
+    int GetAlto() {
         return this.alto;
     }
-    int GetAncho(){
+
+    int GetAncho() {
         return this.ancho;
     }
+
     //captura posicion en el eje x de la barra
-    int GetXB(){
+    int GetXB() {
         return x;
     }
+
     //captura posicion en el eje y de la barra
-    int GetYB(){
+    int GetYB() {
         return y;
-        
+
     }
 
     @Override
@@ -57,13 +59,13 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
             if (getX() <= 0) {
                 this.setLocation(0, this.getY());
                 this.setX(0);
-                this.x = 0 ;
+                this.x = 0;
             } else {
                 this.setLocation(this.getX() - 20, this.getY());//si la tecla fue izquierda la posicion en x se deplazara 5
                 this.x -= 20;
                 //pixeles a la izquierda = -5
             }
-           // System.out.println("Izquierda: X=" + this.GetXB() + "\n");
+            // System.out.println("Izquierda: X=" + this.GetXB() + "\n");
         }
         if (evento.getExtendedKeyCode() == KeyEvent.VK_RIGHT) {//captura la tecla y pregunta si fue la tecla derecha
             if (getX() >= 680) {
@@ -72,15 +74,13 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
                 this.x = 680;
             } else {
                 this.setLocation(this.getX() + 20, this.getY());//si la tecla fue derecha la posicion en x se deplazara 5
-                this.x += 20; 
+                this.x += 20;
                 //pixeles a la derecha = 5
             }
-         //   System.out.println("Derecha: X=" + this.GetXB() + "\n");
+            //   System.out.println("Derecha: X=" + this.GetXB() + "\n");
         }
 
     }
-    
-  
 
     public void setX(int x) {
         this.x = x;
@@ -88,7 +88,7 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        
+
     }
 
     @Override
