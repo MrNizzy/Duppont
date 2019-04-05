@@ -16,11 +16,18 @@ public class ResourcesBrick {
             clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(Ruta + audio + Ext)));
             clip.start();
-        } catch (Exception e) {
-
-        }
+        } catch (Exception e) {}
     }
 
+    public void AudioMain(String Ruta, String audio, String Ext) {
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(Ruta + audio + Ext)));
+            clip.loop(1000);
+            clip.start();
+        } catch (Exception e) {}
+    }
+    
     public String getRuta() {
         return ruta;
     }

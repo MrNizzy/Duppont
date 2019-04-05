@@ -39,11 +39,11 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
     }
     //captura posicion en el eje x de la barra
     int GetXB(){
-        return this.getX();
+        return x;
     }
     //captura posicion en el eje y de la barra
     int GetYB(){
-        return this.getY();
+        return y;
         
     }
 
@@ -57,8 +57,10 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
             if (getX() <= 0) {
                 this.setLocation(0, this.getY());
                 this.setX(0);
+                this.x = 0 ;
             } else {
-                this.setLocation(this.getX() - 20, this.getY());//si la tecla fue izquierda la posicion en x se deplazara 5 
+                this.setLocation(this.getX() - 20, this.getY());//si la tecla fue izquierda la posicion en x se deplazara 5
+                this.x -= 20;
                 //pixeles a la izquierda = -5
             }
            // System.out.println("Izquierda: X=" + this.GetXB() + "\n");
@@ -67,14 +69,18 @@ public class Barra extends JButton implements KeyListener, MouseMotionListener {
             if (getX() >= 680) {
                 this.setLocation(680, this.getY());
                 this.setX(680);
+                this.x = 680;
             } else {
-                this.setLocation(this.getX() + 20, this.getY());//si la tecla fue derecha la posicion en x se deplazara 5 
+                this.setLocation(this.getX() + 20, this.getY());//si la tecla fue derecha la posicion en x se deplazara 5
+                this.x += 20; 
                 //pixeles a la derecha = 5
             }
          //   System.out.println("Derecha: X=" + this.GetXB() + "\n");
         }
 
     }
+    
+  
 
     public void setX(int x) {
         this.x = x;

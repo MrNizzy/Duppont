@@ -87,23 +87,49 @@ public class Pelota {
             resources.Audio("/Audios/", "barra", ".wav");
         }*/
     }
-     public void reflejarY(){
-       Dy=-Dy;
+    public void reflejarY(){
+       Dy*=-1;
         Y=Y-5;
     }
-     public void reflejarX(){
-         Dx=-Dx;
-         X=X-5;
+    
+    public void reflejarX(){
+       Dx*=-1;
+        X=X-5;
+    }
+    
+     public void reflejarYN(int coord){
+       Dy*=-1;
+        Y=coord-15;
+    }
+     public void reflejarXI(int coord){
+         Dx*=-1;
+         X=coord-15;
      }
+     public void reflejarXD(int coord){
+         Dx*=-1;
+         X=coord+100;
+     }
+     public void reflejarYS(int coord){
+       Dy*=-1;
+        Y=coord+50;
+    }
     int GetXP(){
         return X;
     }
     int GetYP(){
         return Y;
     }
+    
+    int GetDX() {
+        return Dx;
+    }
+    
+    int GetDY() {
+        return Dy;
+    }
 
     public void velocidadXY() {
-        Dx= 3;
+        Dx= 2;
         Dy = 3;
     }
 

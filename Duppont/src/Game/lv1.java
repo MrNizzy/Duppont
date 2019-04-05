@@ -38,7 +38,7 @@ public final class lv1 {
 
         resources = new ResourcesBrick();
         resources.setRuta("/Images/");
-        resources.Audio("/Audios/", "GRGE", ".wav");
+        resources.AudioMain("/Audios/", "InGame", ".wav");
         //136.000ms
 
         Block_1 = new ImageIcon(getClass().getResource(resources.getRuta() + "Block_1.png")).getImage();

@@ -8,7 +8,6 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -72,11 +71,16 @@ public class GamePanel extends JPanel{
     
     
 void colision (){
-   
-    if((mipelota.GetXP()>=barra.GetXB())&  //b->balon  p->pelota
-		   ( mipelota.GetXP()<=barra.GetXB()+barra.GetAncho())&
-		    (mipelota.GetYP()+barra.GetAlto()>=barra.GetYB())){
-        mipelota.reflejarY();
+boolean BI = new Rectangle(barra.GetXB(),barra.GetYB(),50,20).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
+boolean BD = new Rectangle(barra.GetXB()+50,barra.GetYB(),50,20).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
+if(BI || BD) {
+ if(BI && mipelota.GetDX() < 0 || BD && mipelota.GetDX() > 0) {
+     mipelota.reflejarY();
+ }
+ else{
+     mipelota.reflejarY();
+     mipelota.reflejarX();
+ }
 }
 }
 void colisionL(int[] CX,int[] CY,int[][] estados){ 
@@ -89,25 +93,25 @@ void colisionL(int[] CX,int[] CY,int[][] estados){
         boolean CS = new Rectangle(CX[j],CY[i]+35,85,10).intersects(new Rectangle(mipelota.GetXP(),mipelota.GetYP(),15,15));
             if(CN){//si colosiona con el lado superiror.
                 if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
-                    mipelota.reflejarY();
+                    mipelota.reflejarYN(CY[i]);
                     estados[i][j]=estados[i][j]-1;
                 }
              }
             if(CI){//si colosiona con el lado superiror.
                 if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
-                    mipelota.reflejarX();
+                    mipelota.reflejarXI(CX[j]);
                     estados[i][j]=estados[i][j]-1;
                 }
             }
             if(CS){//si colosiona con el lado superiror.
                 if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
-                    mipelota.reflejarY();
+                    mipelota.reflejarYS(CY[i]);
                     estados[i][j]=estados[i][j]-1;
                 }
             }
             if(CD){//si colosiona con el lado superiror.
                 if(estados[i][j] < 4){//dibuja una explosion si el bloque no es indestructible (valor 4)
-                    mipelota.reflejarX();
+                    mipelota.reflejarXD(CX[j]);
                     estados[i][j]=estados[i][j]-1;
                 }
             }
