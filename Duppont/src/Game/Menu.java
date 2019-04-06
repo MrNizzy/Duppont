@@ -32,7 +32,7 @@ public class Menu extends JPanel {
     JLabel Scores;
     String Titulo = "Duppont", Score = "Score:", Vidas = "Vidas:", Time = "Time: ";
     String SegundosSet = "0";
-    int TimeOut = 120;
+    int TimeOut = 150;
     ImageIcon fondo;
     Timer tiempo;
 

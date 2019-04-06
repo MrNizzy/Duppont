@@ -27,6 +27,7 @@ public class GamePanel extends JPanel implements KeyListener {
     private Pelota mipelota;
     Barra barra;
     lv1 niveles = new lv1();
+    ResourcesBrick resources;
 
     //  private int ladrillos[9][7];
     int Estados[][] = niveles.GetLevel1();
@@ -43,6 +44,7 @@ public class GamePanel extends JPanel implements KeyListener {
         setLayout(null);
 
         //Objetos
+        resources = new ResourcesBrick();
         mipelota = new Pelota(500, 300, tamanio);
         mipelota.LimitesXY(getWidth(), getHeight());
         barra = new Barra(300, (int) Panel_Height - 20);
@@ -90,24 +92,28 @@ public class GamePanel extends JPanel implements KeyListener {
                         if (estados[i][j] < 4) {//dibuja una explosion si el bloque no es indestructible (valor 4)
                             mipelota.reflejarYN(CY[i]);
                             estados[i][j] = estados[i][j] - 1;
+                            resources.Audio("/Audios/", "brick", ".wav");
                         }
                     }
                     if (CI) {//si colosiona con el lado superiror.
                         if (estados[i][j] < 4) {//dibuja una explosion si el bloque no es indestructible (valor 4)
                             mipelota.reflejarXI(CX[j]);
                             estados[i][j] = estados[i][j] - 1;
+                            resources.Audio("/Audios/", "brick", ".wav");
                         }
                     }
                     if (CS) {//si colosiona con el lado superiror.
                         if (estados[i][j] < 4) {//dibuja una explosion si el bloque no es indestructible (valor 4)
                             mipelota.reflejarYS(CY[i]);
                             estados[i][j] = estados[i][j] - 1;
+                            resources.Audio("/Audios/", "brick", ".wav");
                         }
                     }
                     if (CD) {//si colosiona con el lado superiror.
                         if (estados[i][j] < 4) {//dibuja una explosion si el bloque no es indestructible (valor 4)
                             mipelota.reflejarXD(CX[j]);
                             estados[i][j] = estados[i][j] - 1;
+                            resources.Audio("/Audios/", "brick", ".wav");
                         }
                     }
                 }

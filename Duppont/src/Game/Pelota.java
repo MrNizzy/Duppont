@@ -77,7 +77,7 @@ public class Pelota {
         } else if ((Y > limite_inferior)) {
             Y = limite_inferior;
             Dy = -Dy;
-            resources.Audio("/Audios/", "barra", ".wav");
+            resources.AudioColi("/Audios/", ".wav");
         }
         /*else if ((Y == limite_inferior-20&&(X>=barra.getX()&&X<=barra.getX()+100))) {
             Y = limite_inferior;
@@ -89,7 +89,7 @@ public class Pelota {
     public void reflejarY() {
         Dy *= -1;
         Y = Y - 5;
-        resources.Audio("/Audios/", "barra", ".wav");
+        resources.AudioColi("/Audios/", ".wav");
     }
 
     public void reflejarX() {
