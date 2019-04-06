@@ -38,7 +38,7 @@ public class Menu extends JPanel {
         this.fondo = new ImageIcon(getClass().getResource(resources.getRuta() + "image.png"));//Fondo
         this.setSize(210, 460);//Tamaño
         this.setLocation(800, 7);//Localizacion
-        this.setBackground(Color.LIGHT_GRAY);//Fondo
+        this.setBackground(Color.decode("#ffff66"));//Fondo
         title = new ImageIcon(getClass().getResource(resources.getRuta() + "Title.png")).getImage();//Titulo
         Scores = new JLabel("Score");
         Scores.setLocation(820, 135);
@@ -50,7 +50,7 @@ public class Menu extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         //delaySegundo();
-        g.setColor(Color.LIGHT_GRAY);
+        g.setColor(Color.decode("#ffff33"));
         g.drawString(SegundosSet, 80, 135);
         g.setColor(Color.decode("#de2f51"));
         g.setFont(new Font("DFGothic-EB", Font.PLAIN, 30));

@@ -89,6 +89,7 @@ public class Pelota {
     public void reflejarY() {
         Dy *= -1;
         Y = Y - 5;
+        resources.Audio("/Audios/", "barra", ".wav");
     }
 
     public void reflejarX() {
