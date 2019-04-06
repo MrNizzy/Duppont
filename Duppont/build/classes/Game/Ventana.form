@@ -91,7 +91,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="v1.5.6.3 released"/>
+        <Property name="text" type="java.lang.String" value="v1.5.6.5 released"/>
       </Properties>
     </Component>
   </SubComponents>

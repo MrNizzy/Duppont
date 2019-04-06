@@ -35,6 +35,7 @@ public class Ventana extends javax.swing.JFrame {
         //pelota.animar(true);
         Game.add(Gamepanel);
         
+        
     }
 
     /**
@@ -68,7 +69,7 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Simpsonfont", 0, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel1.setText("v1.5.6.3 released");
+        jLabel1.setText("v1.5.6.5 released");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
