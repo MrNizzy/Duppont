@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
  * @e-mail 3134183631y@gmail.com
  */
 public class Pelota {
-
+private boolean mover=true;
     private Image balon;
     //Coordenadas del Balon
     private int X;
@@ -53,12 +53,17 @@ public class Pelota {
         limite_derecha = width - balon.getWidth(null);
         limite_inferior = height - balon.getHeight(null);
     }
-
+void Mover(boolean mover){
+    this.mover=mover;
+}
     //recalcula variables para dar la sensacion de movimiento
     public void traslacion(int x, int y) {
-        //nueva posicion
+   
+   if(mover==true){ 
+    
         X += Dx;
-        Y += Dy;
+        Y += Dy;   
+   }
         //controla que la Balon no salga de los limites del contenedor
         if (X < this.limite_izquierda) {
             X = 0;
@@ -132,12 +137,12 @@ public class Pelota {
     int GetDY() {
         return Dy;
     }
+   
 
     public void velocidadXY() {
         Dx = 2;
         Dy = 3;
     }
-
     public void dibujar(Graphics g) {
         Graphics2D background = (Graphics2D) g;
         Graphics2D g2 = (Graphics2D) g;

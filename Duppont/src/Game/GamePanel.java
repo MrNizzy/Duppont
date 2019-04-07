@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import static java.lang.Thread.sleep;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -20,6 +21,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements KeyListener {
 
     private int x, y;
+    private int level; 
     private final double Panel_Width;
     private final double Panel_Height;
     private int Score;
@@ -27,6 +29,7 @@ public class GamePanel extends JPanel implements KeyListener {
     private Pelota mipelota;
     Barra barra;
     lv1 niveles = new lv1();
+    int NextL=0;
     ResourcesBrick resources;
 
     //  private int ladrillos[9][7];
@@ -45,7 +48,7 @@ public class GamePanel extends JPanel implements KeyListener {
 
         //Objetos
         resources = new ResourcesBrick();
-        mipelota = new Pelota(500, 300, tamanio);
+        mipelota = new Pelota(400, 500, tamanio);
         mipelota.LimitesXY(getWidth(), getHeight());
         barra = new Barra(300, (int) Panel_Height - 20);
         barra.setLayout(null);
@@ -116,11 +119,44 @@ public class GamePanel extends JPanel implements KeyListener {
                             resources.Audio("/Audios/", "brick", ".wav");
                         }
                     }
+                    
                 }
             }
 
         }
     }
+    void NextLevel(int estados[][]){
+      NextL=0;
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                if(estados[i][j]==0||estados[i][j]==4){
+                   NextL+=1;  
+                    //System.out.println(NextL);
+                }  
+
+            }
+            if(NextL==42){
+                 NextL=0;
+                level+=1;//si todos los ladrillos estan en estados 0 y 4 se pasa a otro nivel
+                System.out.println(level);
+               
+            }
+            if(level==2){
+            Estados = niveles.GetLevel2(); 
+      
+            }
+            if(level==3){
+                Estados=niveles.GetLevel3();
+            }
+            if(level==4){
+                System.out.println("ganó"); 
+                NextL=45;
+                mipelota.Mover(false);
+            }
+        }
+    }
+    
+    
 
     public double getPanel_Width() {
         return Panel_Width;
@@ -140,13 +176,14 @@ public class GamePanel extends JPanel implements KeyListener {
         Graphics2D g3 = (Graphics2D) g;
         colision();
         colisionL(niveles.GetCX(), niveles.GetCY(), Estados);
+        NextLevel(Estados);
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         mipelota.dibujar(g);
-        niveles.dibujar(g);
+        niveles.dibujar(g,Estados);
     }
 
     //Controla el inicio y fin de la animación

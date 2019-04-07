@@ -28,9 +28,13 @@ public final class lv1 {
     //private int CY[]={10,35,60,85,110,130};
     private final int CY[] = {10, 50, 90, 130, 170, 210};//185,210   coordenada y
 
-    private final int LV1[][] = {{2, 2, 2, 2, 2, 2, 2}, {2, 2, 7, 2, 7, 2, 2}, {2, 1, 2, 2, 2, 1, 2}, {3, 2, 1, 2, 1, 2, 3}, {3, 2, 2, 1, 2, 2, 3}, {3, 3, 2, 2, 2, 3, 3}};
-    private final int LV2[][] = {{1, 2, 4, 0, 2, 4, 2}, {4, 3, 2, 3, 1, 2, 1}, {2, 1, 2, 3, 2, 0, 1}, {2, 2, 4, 2, 1, 2, 1}, {4, 3, 2, 3, 1, 2, 1}, {2, 1, 2, 3, 2, 0, 1}};
-    private final int LV3[][] = {{2, 1, 2, 3, 2, 0, 1}, {2, 2, 4, 2, 1, 2, 1}, {2, 2, 4, 2, 1, 2, 1}, {2, 2, 4, 2, 1, 2, 1}, {4, 3, 2, 3, 1, 2, 1}, {2, 1, 2, 3, 2, 0, 1}};
+    //private final int LV1[][] = {{2, 2, 2, 2, 2, 2, 2}, {2, 2, 7, 2, 7, 2, 2}, {2, 1, 2, 2, 2, 1, 2}, {3, 2, 1, 2, 1, 2, 3}, {3, 2, 2, 1, 2, 2, 3}, {3, 3, 2, 2, 2, 3, 3}};
+    private final int LV1[][] = {{0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 0}};
+   // private final int LV2[][] = {{1, 2, 4, 0, 2, 4, 2}, {4, 3, 2, 3, 1, 2, 1}, {2, 1, 2, 3, 2, 0, 1}, {2, 2, 4, 2, 1, 2, 1}, {4, 3, 2, 3, 1, 2, 1}, {2, 1, 2, 3, 2, 0, 1}};
+   
+   private final int LV2[][] = {{0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}};
+   //private final int LV3[][] = {{2, 1, 2, 3, 2, 0, 1}, {2, 2, 4, 2, 1, 2, 1}, {2, 2, 4, 2, 1, 2, 1}, {2, 2, 4, 2, 1, 2, 1}, {4, 3, 2, 3, 1, 2, 1}, {2, 1, 2, 3, 2, 0, 1}};
+   private final int LV3[][] = {{0, 0, 0, 0, 0, 0, 0},{0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 1, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}};
     // private int LV1Estados[]=new int[28];
 
     public lv1() {
@@ -51,39 +55,24 @@ public final class lv1 {
     }
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    public void dibujar(Graphics g) {
+    public void dibujar(Graphics g, int level[][]) {
         Graphics2D g1 = (Graphics2D) g;
         Graphics2D g2 = (Graphics2D) g;
         Graphics2D g3 = (Graphics2D) g;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
-                switch (LV1[i][j]) {
+                switch (level[i][j]) {
                     case 1:
-                        g1.drawImage(Block_1, CX[j], CY[i], TX, TY, null);
-                        //   VidasL[i][j]=1;
+                        g1.drawImage(Block_1, CX[j], CY[i], TX, TY, null);                      
                         break;
                     case 2:
                         g1.drawImage(Block_2, CX[j], CY[i], TX, TY, null);
-                        //VidasL[i][j]=2;
                         break;
                     case 3:
                         g1.drawImage(Block_3, CX[j], CY[i], TX, TY, null);
-                        //VidasL[i][j]=3;
                         break;
                     case 4:
                         g1.drawImage(Block_4, CX[j], CY[i], TX, TY, null);
-                        //  VidasL[i][j]=4;
-                        break;
-                    case 5:
-                        g1.drawImage(Block_5, CX[j], CY[i], TX, TY, null);
-                        //  VidasL[i][j]=4;
-                        break;
-                    case 6:
-                        g1.drawImage(Block_6, CX[j], CY[i], TX, TY, null);
-                        //  VidasL[i][j]=4;
-                        break;
-                    case 7:
-                        g1.drawImage(Block_0, CX[j], CY[i], TX, TY, null);
                         //  VidasL[i][j]=4;
                         break;
                     default:
@@ -103,6 +92,12 @@ public final class lv1 {
 
     public int[][] GetLevel1() {
         return LV1;
+    }
+    public int[][] GetLevel2() {
+        return LV2;
+    }
+    public int[][] GetLevel3() {
+        return LV3;
     }
 
     //////////////////////////////////////////////      
