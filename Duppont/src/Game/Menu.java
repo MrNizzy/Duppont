@@ -29,6 +29,7 @@ public class Menu extends JPanel {
     private final Image Vidas_title;
     private final Image Tiempo_title;
     private final Image Score_title;
+    private final Image TOPL;
     JLabel Scores;
     String Titulo = "Duppont", Score = "Score:", Vidas = "Vidas:", Time = "Time: ";
     String SegundosSet = "0";
@@ -45,6 +46,7 @@ public class Menu extends JPanel {
         resources.setRuta("/Images/");
 
         Tiempo_title = new ImageIcon(getClass().getResource(resources.getRuta() + "Time.png")).getImage();
+        TOPL = new ImageIcon(getClass().getResource(resources.getRuta() + "TopPl.png")).getImage();
         Vidas_title = new ImageIcon(getClass().getResource(resources.getRuta() + "Vidas.png")).getImage();
         Score_title = new ImageIcon(getClass().getResource(resources.getRuta() + "Score.png")).getImage();
         /**
@@ -64,7 +66,7 @@ public class Menu extends JPanel {
                     DisminuirTiempo();
                     repaint();
                 } else {
-                    
+
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException ex) {
@@ -76,6 +78,7 @@ public class Menu extends JPanel {
             }
         });
         tiempo.start();
+        resources.LeerPuntajes();
 
     }
 
@@ -118,6 +121,12 @@ public class Menu extends JPanel {
         //g.drawString(Score, 20, 210);
         g.setColor(Color.decode("#000000"));
         g.drawString("None", 135, 225);
+        
+        //Ultimos Jugadores
+        g.drawImage(TOPL, 20, 235, null);
+        g.drawString(resources.ScoreLinea(0), 20, 300);
+        g.drawString(resources.ScoreLinea(1), 20, 320);
+        g.drawString(resources.ScoreLinea(2), 20, 340);
 
     }
 
