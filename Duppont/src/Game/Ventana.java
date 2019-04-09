@@ -1,4 +1,3 @@
-
 package Game;
 
 import java.awt.event.ActionEvent;
@@ -17,8 +16,11 @@ public class Ventana extends javax.swing.JFrame {
     Menu menu;
     ImageIcon ImgFondo = new ImageIcon(getClass().getResource("/Images/BackgroundSolid.png"));
     JLabel Fondo;
-    Timer timer;
-    
+    boolean FinDelJuego = false;
+    Timer timer, cronometro;
+    int Tiempo = 5;
+    String name;
+
     public Ventana() {
         initComponents();
         setTitle("The Simpsons - Duppont");
@@ -26,12 +28,13 @@ public class Ventana extends javax.swing.JFrame {
         setLocationRelativeTo(null); // Centrar ventana
         setResizable(false); // No maximizar ventana
         //se crea instancia a Animacion de animacion y se añade a la Principal
-        
+
         Fondo = new JLabel();
         Fondo.setIcon(ImgFondo);
         menu = new Menu();
-        Fondo.setBounds(0, 0, this.getWidth(), this.getHeight()-30);
-        
+        Fondo.setBounds(0, 0, this.getWidth(), this.getHeight() - 30);
+
+        menu.setNombre(name);
         this.add(menu);
         this.add(Fondo);
         Gamepanel = new GamePanel(Game.getSize(), 0);
@@ -40,23 +43,53 @@ public class Ventana extends javax.swing.JFrame {
         //Game.add(pelota);
         //pelota.animar(true);
         Game.add(Gamepanel);
-        
+
+        cronometro = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Tiempo == 0) {
+                    FinDelJuego = true;
+                }
+                Tiempo--;
+            }
+        });
+
         timer = new Timer(16, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(Gamepanel.golpes()==true){
+                if (Gamepanel.golpes() == true) {
                     menu.getpuntaje(Gamepanel.getPuntua());
                 }
-                if(menu.TimeOut==0){
+                if (menu.TimeOut == 0) {
                     Gamepanel.gameover();
                     repaint();
+                    cronometro.start();
                 }
 
                 repaint();
             }
         });
         timer.start();
-        
+
+    }
+
+    public boolean getFinDelJuego() {
+        return FinDelJuego;
+    }
+
+    public void setFinDelJuego() {
+        FinDelJuego = false;
+    }
+    
+    public void jugador(String Jugador){
+        jLabel2.setText("Jugador: "+Jugador);
+        Jugador=name;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Finalizando el Objeto");
+        super.finalize();
     }
 
     /**
@@ -70,6 +103,7 @@ public class Ventana extends javax.swing.JFrame {
 
         Game = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,14 +126,20 @@ public class Ventana extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 102));
         jLabel1.setText("v1.5.6.5 released");
 
+        jLabel2.setFont(new java.awt.Font("Simpsonfont", 0, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 102));
+        jLabel2.setText("JUgador. ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(458, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 518, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -110,7 +150,9 @@ public class Ventana extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(461, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -160,5 +202,6 @@ public class Ventana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Game;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

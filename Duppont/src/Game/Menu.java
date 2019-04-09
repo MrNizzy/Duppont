@@ -11,9 +11,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,8 +29,8 @@ public class Menu extends JPanel {
     private final Image TOPL;
     JLabel Scores;
     String Titulo = "Duppont", Score = "Score:", Vidas = "Vidas:", Time = "Time: ";
-    String SegundosSet = "0";
-    int TimeOut = 30,puntac=0;
+    String SegundosSet = "0",name="";
+    int TimeOut = 30,puntac=0,lineas=0;
     ImageIcon fondo;
     Timer tiempo;
     String puntuacion;
@@ -92,6 +89,7 @@ public class Menu extends JPanel {
         g.setFont(new Font("DFGothic-EB", Font.PLAIN, 30));
         g.drawImage(title, 30, 20, this);
 
+        //g.drawString(name, 30, 70);
         g.setFont(new Font("DFGothic-EB", Font.PLAIN, 18));
         g.drawImage(Tiempo_title, 5, 110, this);
         g.setColor(Color.decode("#ffff66"));
@@ -137,6 +135,10 @@ public class Menu extends JPanel {
     public void getpuntaje(int puntaje){
         resources.puntaje=resources.puntaje+puntaje;
         puntac=puntac+resources.puntaje;
+    }
+
+    public void setNombre(String name) {
+        this.name = name;
     }
 
 }
