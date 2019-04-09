@@ -18,9 +18,10 @@ public class ResourcesBrick {
     public int random;
     public int microSeg;
     private final String[] Texto = new String[900];
+    int puntaje = 0;
 
     public ResourcesBrick() {
-        
+
     }
 
     public int RandomSong() {
@@ -91,7 +92,7 @@ public class ResourcesBrick {
         File archivo = null;
         FileReader fr = null;
         BufferedReader br = null;
-        int i=0;
+        int i = 0;
 
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
@@ -104,7 +105,7 @@ public class ResourcesBrick {
             String linea;
             while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
-                Texto[i]=linea;
+                Texto[i] = linea;
                 i++;
             }
         } catch (Exception e) {
@@ -129,5 +130,25 @@ public class ResourcesBrick {
         Text = Texto[a];
         return Text;
     }
+
+    public void verPuntaje() {
+        System.out.println("El puntaje actual es: " + puntaje);
+    }
+
+    public int RandomPuntaje() {
+        random = (int) (Math.random() * 10) + 1;
+        return random;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+    
+    
+    
 
 }

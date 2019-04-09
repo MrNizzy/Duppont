@@ -1,8 +1,13 @@
 
 package Game;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 public class Ventana extends javax.swing.JFrame {
 
@@ -12,6 +17,7 @@ public class Ventana extends javax.swing.JFrame {
     Menu menu;
     ImageIcon ImgFondo = new ImageIcon(getClass().getResource("/Images/BackgroundSolid.png"));
     JLabel Fondo;
+    Timer timer;
     
     public Ventana() {
         initComponents();
@@ -35,6 +41,21 @@ public class Ventana extends javax.swing.JFrame {
         //pelota.animar(true);
         Game.add(Gamepanel);
         
+        timer = new Timer(16, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Gamepanel.golpes()==true){
+                    menu.getpuntaje(Gamepanel.getPuntua());
+                }
+                if(menu.TimeOut==0){
+                    Gamepanel.gameover();
+                    repaint();
+                }
+
+                repaint();
+            }
+        });
+        timer.start();
         
     }
 

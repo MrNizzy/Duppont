@@ -2,8 +2,10 @@ package Game;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import static java.lang.Thread.sleep;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -28,6 +31,8 @@ public class GamePanel extends JPanel implements KeyListener {
     private final Timer timer;
     private Pelota mipelota;
     Barra barra;
+    int puntua;
+    boolean golpe=false,golpe2=false,gameover=false;
     lv1 niveles = new lv1();
     int NextL=0;
     ResourcesBrick resources;
@@ -52,6 +57,8 @@ public class GamePanel extends JPanel implements KeyListener {
         mipelota.LimitesXY(getWidth(), getHeight());
         barra = new Barra(300, (int) Panel_Height - 20);
         barra.setLayout(null);
+        niveles.setAlto(100);
+        niveles.setAncho(100);
 
 
         ///////////////////////////////////
@@ -96,6 +103,8 @@ public class GamePanel extends JPanel implements KeyListener {
                             mipelota.reflejarYN(CY[i]);
                             estados[i][j] = estados[i][j] - 1;
                             resources.Audio("/Audios/", "brick", ".wav");
+                            puntua=puntua+resources.RandomPuntaje();
+                            golpe=true;
                         }
                     }
                     if (CI) {//si colosiona con el lado superiror.
@@ -103,6 +112,8 @@ public class GamePanel extends JPanel implements KeyListener {
                             mipelota.reflejarXI(CX[j]);
                             estados[i][j] = estados[i][j] - 1;
                             resources.Audio("/Audios/", "brick", ".wav");
+                            puntua=puntua+resources.RandomPuntaje();
+                            golpe=true;
                         }
                     }
                     if (CS) {//si colosiona con el lado superiror.
@@ -110,6 +121,8 @@ public class GamePanel extends JPanel implements KeyListener {
                             mipelota.reflejarYS(CY[i]);
                             estados[i][j] = estados[i][j] - 1;
                             resources.Audio("/Audios/", "brick", ".wav");
+                            puntua=puntua+resources.RandomPuntaje();
+                            golpe=true;
                         }
                     }
                     if (CD) {//si colosiona con el lado superiror.
@@ -117,6 +130,8 @@ public class GamePanel extends JPanel implements KeyListener {
                             mipelota.reflejarXD(CX[j]);
                             estados[i][j] = estados[i][j] - 1;
                             resources.Audio("/Audios/", "brick", ".wav");
+                            puntua=puntua+resources.RandomPuntaje();
+                            golpe=true;
                         }
                     }
                     
@@ -177,6 +192,9 @@ public class GamePanel extends JPanel implements KeyListener {
         colision();
         colisionL(niveles.GetCX(), niveles.GetCY(), Estados);
         NextLevel(Estados);
+        if(gameover==true){
+            niveles.ChangeGame();
+        }
     }
 
     @Override
@@ -184,6 +202,14 @@ public class GamePanel extends JPanel implements KeyListener {
         super.paintComponent(g);
         mipelota.dibujar(g);
         niveles.dibujar(g,Estados);
+    }
+
+    public int getPuntua() {
+        return puntua;
+    }
+
+    public void setPuntua(int puntua) {
+        this.puntua = puntua;
     }
 
     //Controla el inicio y fin de la animación
@@ -216,6 +242,21 @@ public class GamePanel extends JPanel implements KeyListener {
     @Override
     public void keyReleased(KeyEvent ke) {
 
+    }
+    
+    public boolean golpes(){
+        if(golpe==true){
+            golpe2=true;
+            golpe=false;
+        }else{
+            golpe2=false;
+        }
+        
+        return golpe2;
+    }
+    
+    public void gameover(){
+        gameover=true;
     }
 
 }

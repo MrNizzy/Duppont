@@ -33,12 +33,13 @@ public class Menu extends JPanel {
     JLabel Scores;
     String Titulo = "Duppont", Score = "Score:", Vidas = "Vidas:", Time = "Time: ";
     String SegundosSet = "0";
-    int TimeOut = 150;
+    int TimeOut = 30,puntac=0;
     ImageIcon fondo;
     Timer tiempo;
+    String puntuacion;
 
     //Recursos
-    private final ResourcesBrick resources;
+    ResourcesBrick resources;
 
     public Menu() {
         //Inicializacion
@@ -66,12 +67,6 @@ public class Menu extends JPanel {
                     DisminuirTiempo();
                     repaint();
                 } else {
-
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException ex) {
-
-                    }
                     tiempo.stop();
                 }
 
@@ -120,7 +115,8 @@ public class Menu extends JPanel {
         g.setColor(Color.decode("#de2f51"));
         //g.drawString(Score, 20, 210);
         g.setColor(Color.decode("#000000"));
-        g.drawString("None", 135, 225);
+        puntuacion = Integer.toString(resources.getPuntaje());
+        g.drawString(puntuacion, 135, 225);
         
         //Ultimos Jugadores
         g.drawImage(TOPL, 20, 235, null);
@@ -132,6 +128,15 @@ public class Menu extends JPanel {
 
     public int getTimeOut() {
         return TimeOut;
+    }
+    
+    public void puntajeadd(){
+        resources.puntaje++;
+    }
+    
+    public void getpuntaje(int puntaje){
+        resources.puntaje=resources.puntaje+puntaje;
+        puntac=puntac+resources.puntaje;
     }
 
 }
